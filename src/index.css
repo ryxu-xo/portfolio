@@ -1,0 +1,143 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    font-family: 'JetBrains Mono', monospace;
+    background: #0a0a0a;
+    color: #ffffff;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  .cyber-button {
+    @apply relative px-6 py-3 bg-transparent border-2 border-cyber-blue text-cyber-blue font-mono font-medium transition-all duration-300 hover:bg-cyber-blue hover:text-dark-bg hover:shadow-[0_0_20px_rgba(0,255,255,0.5)] hover:scale-105;
+  }
+  
+  .cyber-button::before {
+    content: '';
+    @apply absolute inset-0 bg-cyber-blue opacity-0 transition-opacity duration-300;
+    z-index: -1;
+  }
+  
+  .cyber-button:hover::before {
+    @apply opacity-100;
+  }
+  
+  .neon-text {
+    @apply text-cyber-blue;
+    text-shadow: 0 0 5px currentColor, 0 0 10px currentColor, 0 0 15px currentColor;
+  }
+  
+  .glitch-text {
+    position: relative;
+    animation: glitch 0.3s ease-in-out;
+  }
+  
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .glitch-text::before {
+    animation: glitch-1 0.3s ease-in-out;
+    color: #ff00ff;
+    z-index: -1;
+  }
+  
+  .glitch-text::after {
+    animation: glitch-2 0.3s ease-in-out;
+    color: #00ff00;
+    z-index: -2;
+  }
+  
+  .terminal-cursor {
+    border-right: 2px solid #00ffff;
+    animation: blink-caret 0.75s step-end infinite;
+  }
+  
+  .cyber-card {
+    @apply bg-dark-surface border border-dark-border p-6 rounded-lg transition-all duration-300 hover:border-cyber-blue hover:shadow-[0_0_20px_rgba(0,255,255,0.3)] hover:scale-105;
+  }
+  
+  .cyber-card:hover {
+    background: linear-gradient(135deg, rgba(0, 255, 255, 0.05), rgba(255, 0, 255, 0.05));
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(45deg, #00ffff, #ff00ff, #00ff00);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .cyber-scrollbar::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  .cyber-scrollbar::-webkit-scrollbar-track {
+    background: #1a1a1a;
+  }
+  
+  .cyber-scrollbar::-webkit-scrollbar-thumb {
+    background: #00ffff;
+    border-radius: 4px;
+  }
+  
+  .cyber-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: #ff00ff;
+  }
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(2px, -2px); }
+  40% { transform: translate(2px, 2px); }
+  60% { transform: translate(-2px, -2px); }
+  80% { transform: translate(-2px, 2px); }
+}
+
+/* Custom scrollbar for the entire page */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(45deg, #00ffff, #ff00ff);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(45deg, #ff00ff, #00ff00);
+}
